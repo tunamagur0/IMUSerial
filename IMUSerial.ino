@@ -31,9 +31,9 @@ void setup(){
     If used battery, please call this function in your project
   */
   M5.Power.begin();
-    
-  M5.IMU.Init();
 
+  M5.IMU.Init();
+  
   M5.Lcd.fillScreen(BLACK);
   M5.Lcd.setTextColor(GREEN , BLACK);
   M5.Lcd.setTextSize(2);
@@ -47,7 +47,7 @@ void loop() {
   M5.IMU.getAhrsData(&pitch,&roll,&yaw);
   M5.IMU.getTempData(&temp);
 
-  // Serial.println(temp);
+  Serial.printf("g:%f,%f,%f a:%f,%f,%f p:%f r:%f y:%f t:%f\n", gyroX, gyroY, gyroZ, accX, accY, accZ, pitch, roll, yaw, temp);
 
   M5.Lcd.setCursor(0, 20);
   M5.Lcd.printf("%6.2f  %6.2f  %6.2f      ", gyroX, gyroY, gyroZ);
@@ -64,5 +64,5 @@ void loop() {
   M5.Lcd.setCursor(0, 155);
   M5.Lcd.printf("Temperature : %.2f C", temp);
 
-  delay(1);
+  delay(1000 / 90);
 }
